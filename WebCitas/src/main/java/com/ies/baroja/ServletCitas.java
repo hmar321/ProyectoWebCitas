@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.model.Usuarios;
+import com.model.Citas;
 import com.mysql.jdbc.PreparedStatement;
 
 /**
  * Servlet implementation class ServletForm
  */
-@WebServlet("/ServletForm")
-public class ServletForm extends HttpServlet {
+@WebServlet("/ServletCitaS")
+public class ServletCitas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ServletForm() {
+	public ServletCitas() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -46,11 +46,10 @@ public class ServletForm extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			/** 1- recogida de datos */
-			Usuarios usuario = new Usuarios(request.getParameter("nombre"), request.getParameter("direccion"),
-					request.getParameter("ciudad"), request.getParameter("pais"), request.getParameter("sexo"),
-					request.getParameter("pareja"),request.getParameter("email"),request.getParameter("contrasena"));
-			/** 2- Insertar Usuario en la base de datos */
-			boolean bRes = Controller.insertar(usuario);
+			Citas cita = new Citas( request.getParameter("id_cita"),request.getParameter("fecha"+" "+"hora"), request.getParameter("centro_id"),
+					request.getParameter("fracaso"), request.getParameter("id_u1"), request.getParameter("id_u2"));
+			/** 2- Insertar cita en la base de datos */
+			boolean bRes = Controller.insertar(cita);
 			/** 3- Mostrar resultado por pantalla */
 			if (bRes) {
 				response.setContentType("text/html");
@@ -62,11 +61,10 @@ public class ServletForm extends HttpServlet {
 						+ "</HEAD>\n" + "<BODY>\n" + "<div class=\"container mt-3\">\n"
 						+ "<h2 class=\"text-success\">Usuario insertado correctamente<h2>\n"
 						+ "<ul class=\"list-group\"> \n" + " <LI class=\"list-group-item\">nombre: "
-						+ usuario.getNombre() + "</li>\n" + " <LI class=\"list-group-item\">procedencia: "
-						+ usuario.getDireccion() + "</li>\n" + "<LI class=\"list-group-item\">altura: "
-						+ usuario.getCiudad() + "</li>\n" + " <LI class=\"list-group-item\">peso: " + usuario.getPais()
-						+ "</li>\n" + " <LI class=\"list-group-item\">posicion: " + usuario.getSexo() + "</li>\n"
-						+ " <LI class=\"list-group-item\">nombre_equipo: " + usuario.getPareja() + "</li>\n"
+						+ cita.getCentro_id() + "</li>\n" + " <LI class=\"list-group-item\">procedencia: "
+						+ cita.getFecha_hora() + "</li>\n" + "<LI class=\"list-group-item\">altura: "
+						+ cita.getId_u1() + "</li>\n" + " <LI class=\"list-group-item\">peso: " + cita.getId_u2()
+						+ "</li>\n"
 						+ "</UL>\n" + "</div></BODY></HTML>");
 				out.close();
 			} else {
@@ -74,7 +72,7 @@ public class ServletForm extends HttpServlet {
 				mostrarError(response);
 			}
 		} catch (Exception ex) {
-			System.out.println("Error en servletAlta");
+			System.out.println("Error en servletCita");
 			ex.printStackTrace();
 			mostrarError(response);
 		}

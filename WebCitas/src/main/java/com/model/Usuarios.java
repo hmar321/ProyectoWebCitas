@@ -9,6 +9,8 @@ public class Usuarios {
 	private String pareja;
 	private String email;
 	private String contrasena;
+	
+
 	/**
 	 * @param nombre
 	 * @param direccion
@@ -21,7 +23,6 @@ public class Usuarios {
 	 */
 	public Usuarios(String nombre, String direccion, String ciudad, String pais, String sexo, String pareja,
 			String email, String contrasena) {
-		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.ciudad = ciudad;
@@ -31,96 +32,129 @@ public class Usuarios {
 		this.email = email;
 		this.contrasena = contrasena;
 	}
+
+
+
 	/**
 	 * @return the nombre
 	 */
 	public String getNombre() {
 		return nombre;
 	}
+
+
 	/**
 	 * @param nombre the nombre to set
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
 	/**
 	 * @return the direccion
 	 */
 	public String getDireccion() {
 		return direccion;
 	}
+
+
 	/**
 	 * @param direccion the direccion to set
 	 */
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+
+
 	/**
 	 * @return the ciudad
 	 */
 	public String getCiudad() {
 		return ciudad;
 	}
+
+
 	/**
 	 * @param ciudad the ciudad to set
 	 */
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
+
+
 	/**
 	 * @return the pais
 	 */
 	public String getPais() {
 		return pais;
 	}
+
+
 	/**
 	 * @param pais the pais to set
 	 */
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
+
+
 	/**
 	 * @return the sexo
 	 */
 	public String getSexo() {
 		return sexo;
 	}
+
+
 	/**
 	 * @param sexo the sexo to set
 	 */
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
+
+
 	/**
 	 * @return the pareja
 	 */
 	public String getPareja() {
 		return pareja;
 	}
+
+
 	/**
 	 * @param pareja the pareja to set
 	 */
 	public void setPareja(String pareja) {
 		this.pareja = pareja;
 	}
+
+
 	/**
 	 * @return the email
 	 */
 	public String getEmail() {
 		return email;
 	}
+
+
 	/**
 	 * @param email the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
 	/**
 	 * @return the contrasena
 	 */
 	public String getContrasena() {
 		return contrasena;
 	}
+
+
 	/**
 	 * @param contrasena the contrasena to set
 	 */
@@ -128,6 +162,10 @@ public class Usuarios {
 		this.contrasena = contrasena;
 	}
 
+
+	/**
+	 * @return the String
+	 */
 	public String toString() {
 		StringBuffer sbResultado = new StringBuffer();
 		sbResultado.append(nombre);
@@ -148,4 +186,6 @@ public class Usuarios {
 		sbResultado.append("; \n");
 		return sbResultado.toString();
 	}
+
+	
 }

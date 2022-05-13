@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.model.Citas;
 import com.model.Usuarios;
 
 /**
@@ -65,6 +66,26 @@ public class ConexionBBDD {
 			prepStatement.setString(6, usuario.getPareja());
 			prepStatement.setString(7, usuario.getEmail());
 			prepStatement.setString(8, usuario.getContrasena());
+			iRes = prepStatement.executeUpdate();
+		} catch (SQLException sqlex) {
+			System.out.println("Error : " + sqlex.getMessage());
+			sqlex.printStackTrace();
+			throw sqlex;
+		}
+		return iRes;
+	}
+	
+	public int insertar(Citas cita) throws SQLException {
+		int iRes = 0;
+		String sInsert = "INSERT INTO web_citas.citas (fech_hora,centro_id,id_u1,id_u2) VALUES (?, ?, ?, ?)";
+		try {
+			System.out.println("Ejecutando: " + sInsert);
+			System.out.println("datos: " + cita);
+			PreparedStatement prepStatement = conexion.prepareStatement(sInsert);
+			prepStatement.setString(1, cita.getFecha_hora());
+			prepStatement.setString(2, cita.getCentro_id());
+			prepStatement.setString(3, cita.getId_u1());
+			prepStatement.setString(4, cita.getId_u2());
 			iRes = prepStatement.executeUpdate();
 		} catch (SQLException sqlex) {
 			System.out.println("Error : " + sqlex.getMessage());
