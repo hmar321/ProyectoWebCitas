@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="com.model.Usuarios"%>
+<%@ page import="com.ies.baroja.Controller"%>
+<%@ page import="java.util.LinkedList"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -21,7 +26,7 @@
     <div class="container-fluid">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="menuin.html">MenÃº</a>
+          <a class="nav-link" href="menuin.html">Menú</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="perfil.html">Perfil</a>
@@ -50,31 +55,14 @@
             <h4 class="card-title">John Doe</h4>
             <table class="table table-bordered">
               <tbody>
-                <tr>
-                  <th>PaÃ­s</th>
-                  <td>asd</td>
-                </tr>
-                <tr>
-                  <th>Ciudad</th>
-                  <td>ads</td>
-                </tr>
-                <tr>
-                  <th>DirecciÃ³n</th>
-                  <td>asd</td>
-                </tr>
-                <tr>
-                  <th>Sexo</th>
-                  <td>asd</td>
-                </tr>
-                <tr>
-                  <th>Pareja</th>
-                  <td>asd</td>
-                </tr>
-                <tr>
-                  <th>Email</th>
-                  <td>asd</td>
-                </tr>
-              </tbody>
+				<%
+				HttpSession sesion = request.getSession();
+				Usuarios usuario = (Usuarios) sesion.getAttribute("jugador");
+				out.println("<tr class='table-primary'>");
+				out.println("<td>" + usuario.getNombre() +"</td>");
+				out.println("</tr>");
+				%>
+			</tbody>
             </table>
             <a href="editarperfil.html" class="btn btn-primary">Editar</a>
           </div>
@@ -91,7 +79,7 @@
             <a class="nav-link" href="ucitas.html">Tus citas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="addcita.html">AÃ±adir cita</a>
+            <a class="nav-link" href="addcita.html">Añadir cita</a>
           </li>
         </ul>
       </div>
@@ -101,9 +89,9 @@
   <div class="mt-5 p-4 bg-dark text-white text-center">
     <h2>Contacto</h2>
     <p>
-      Empresa: AlmarazÂ´s LovingAdvice<br>
-      DirecciÃ³n: Calle Loveless 9 1231 Nowhere<br>
-      TelÃ©fono: (+12) 48 648 15 15. Email: alm@heartbreaker.es
+      Empresa: Almaraz´s LovingAdvice<br>
+      Dirección: Calle Loveless 9 1231 Nowhere<br>
+      Teléfono: (+12) 48 648 15 15. Email: alm@heartbreaker.es
     </p>
   </div>
 
