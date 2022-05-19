@@ -2,6 +2,7 @@ package com.ies.baroja;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.servlet.ServletException;
@@ -47,7 +48,6 @@ public class ServletForm extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-
 			if (request.getParameter("nombre") != null) {
 				altaUsuario(request, response);
 			} else if (request.getParameter("email") != null) {
@@ -55,7 +55,7 @@ public class ServletForm extends HttpServlet {
 			} else if (request.getParameter("buscaNombre") != null) {
 				//buscaJugador(request, response);
 			} else {
-
+				cerrarSesion(request, response);
 			}
 
 		} catch (Exception ex) {
@@ -65,24 +65,36 @@ public class ServletForm extends HttpServlet {
 		}
 	}
 
+	private static void cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession sesion = request.getSession();
+		sesion.invalidate();
+		request.setAttribute("mensaje", "Se ha cerrado la sesión.");
+		response.sendRedirect("index.html");
+	}
+	
 	private static void loginUsuario(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		HttpSession sesion = request.getSession();
-		String usu, pass;
 		String sEmail = request.getParameter("email");
 		String sPwd = request.getParameter("contrasena");
 		LinkedList<Usuarios> lista = Controller.getUsuarios();
 		// deberíamos buscar el usuario en la base de datos, pero
 		// ponemos un ejemplo en el mismo código
-		if (lista.contains(sEmail+" "+sPwd) && sesion.getAttribute("email") == null) {/** esta mal*/
-			// si coincide email y password y además no hay sesión iniciada
-			sesion.setAttribute("email", sEmail);
-			// redirijo a página con información de login exitoso
-			response.sendRedirect("login.html");
-		} else {
-			// lógica para login inválido
-			mostrarError(response,"El usuario "+sEmail+" no tiene acceso");
+		for (int i = 0; i < lista.size(); i++) {
+			String baseEmail=lista.get(i).getEmail();
+			String basePwd=lista.get(i).getContrasena();
+			if (sEmail.equals(baseEmail) && sPwd.equals(basePwd) && sesion.getAttribute("email") == null) {/** esta mal*/
+				Usuarios usuario=Controller.getUsuario(sEmail);
+				// si coincide email y password y además no hay sesión iniciada
+				sesion.setAttribute("usuario", usuario);
+				// redirijo a página con información de login exitoso
+				response.sendRedirect("perfil.jsp");
+			} else {
+				// lógica para login inválido
+				mostrarError(response,"El usuario "+sEmail+" no tiene acceso");
+			}
 		}
+		
 
 	}
 	
@@ -121,7 +133,7 @@ public class ServletForm extends HttpServlet {
 						+ "                  <th>Email</th>\r\n" + "                  <td>" + usuario.getEmail()
 						+ "</td>\r\n" + "                </tr>\r\n" + "              </tbody>\r\n"
 						+ "            </table>\r\n"
-						+ "            <a href=\"perfil.jsp\" class=\"btn btn-primary\">Continuar</a>\r\n"
+						+ "            <a href=\"login.html\" class=\"btn btn-primary\">Continuar</a>\r\n"
 						+ "          </div>\r\n" + "        </div>\n" + "</div></BODY></HTML>");
 				out.close();
 			} else {

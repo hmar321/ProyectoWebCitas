@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="com.model.Usuarios"%>
+<%@ page import="com.model.Centros"%>
 <%@ page import="com.ies.baroja.Controller"%>
 <%@ page import="java.util.LinkedList"%>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-<title>Usuarios</title>
+<title>Centros</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
@@ -20,7 +20,7 @@
 
 <body>
 
-	<div id="h_usuarios" class="p-5 bg-dark text-white text-center">
+	<div id="h_centro" class="p-5 bg-dark text-white text-center">
 		<h1 class="texto-borde">BuscoPareja</h1>
 		<h3 class="texto-borde">Empieza algo real</h3>
 	</div>
@@ -32,12 +32,11 @@
 				</li>
 				<li class="nav-item"><a class="nav-link" href="perfil.jsp">Perfil</a>
 				</li>
+				<li class="nav-item"><a class="nav-link" href="usuarios.jsp">Usuarios</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="paisesin.jsp">Paises</a></li>
 				<li class="nav-item"><a class="nav-link active"
-					href="usuarios.jsp">Usuarios</a></li>
-				<li class="nav-item"><a class="nav-link" href="paisesin.jsp">Paises</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="centrosin.jsp">Centros</a>
-				</li>
+					href="centrosin.jsp">Centros</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -47,25 +46,24 @@
 			<table class="table table-dark table-striped">
 				<thead>
 					<tr>
-						<th>Nombre</th>
-						<th>Dirección</th>
-						<th>Ciudad</th>
+						<th>Centro</th>
 						<th>País</th>
-						<th>Género</th>
-						<th>Pareja</th>
-						<th>Email</th>
+						<th>Ciudad</th>
+						<th>Dirección</th>
+						<th>Código Postal</th>
+						<th>Web</th>
 					</tr>
 				</thead>
 				<tbody>
 					<%
-					LinkedList<Usuarios> lista = Controller.getUsuarios();
+					LinkedList<Centros> lista = Controller.getCentros();
 					for (int i = 0; i < lista.size(); i++) {
-						out.println("<td>" + lista.get(i).getNombre() + "</td>");
-						out.println("<td>" + lista.get(i).getCiudad() + "</td>");
+						out.println("<td>" + lista.get(i).getCentro() + "</td>");
 						out.println("<td>" + lista.get(i).getPais() + "</td>");
-						out.println("<td>" + lista.get(i).getSexo() + "</td>");
-						out.println("<td>" + lista.get(i).getPareja() + "</td>");
-						out.println("<td>" + lista.get(i).getEmail() + "</td>");
+						out.println("<td>" + lista.get(i).getCiudad() + "</td>");
+						out.println("<td>" + lista.get(i).getDireccion() + "</td>");
+						out.println("<td>" + lista.get(i).getCp() + "</td>");
+						out.println("<td>" + lista.get(i).getWeb() + "</td>");
 						out.println("</tr>");
 					}
 					%>
