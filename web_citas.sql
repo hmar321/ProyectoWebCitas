@@ -4,7 +4,7 @@ USE web_citas;
 
 CREATE TABLE paises (
 	pais VARCHAR(50) NOT NULL,
-	n_usuarios INT NOT NULL,
+	n_usuarios INT NOT NULL DEFAULT 0,
 	ultima_actualizacion TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
 	
 	PRIMARY KEY (pais)
@@ -18,7 +18,7 @@ CREATE TABLE usuarios (
 	pais VARCHAR(50) NOT NULL,
 	sexo ENUM('Masculino','Femenino') NOT NULL,
 	pareja ENUM('Hombre','Mujer','Sin preferencia') NOT NULL DEFAULT 'Sin preferencia',
-	email VARCHAR(50) NOT NULL,
+	email VARCHAR(50) NOT NULL UNIQUE,
 	contrasena VARCHAR(50) NOT NULL,
 	PRIMARY KEY (usuario_id,pais),
 	FOREIGN KEY (pais) REFERENCES paises(pais)
@@ -46,10 +46,10 @@ CREATE TABLE centros (
 	centro_id INT AUTO_INCREMENT NOT NULL,
 	cp INT(5) NOT NULL,
 	centro VARCHAR(50) NOT NULL,
-	direccion VARCHAR(30) NOT NULL,
-	ciudad VARCHAR(15) NOT NULL,
+	direccion VARCHAR(100) NOT NULL,
+	ciudad VARCHAR(50) NOT NULL,
 	pais VARCHAR(50) NOT NULL,
-	web VARCHAR(25),
+	web VARCHAR(50),
 	PRIMARY KEY (centro_id),
 	FOREIGN KEY (pais) REFERENCES paises(pais)
 );
