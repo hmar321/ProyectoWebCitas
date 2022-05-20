@@ -73,7 +73,10 @@
 						%>
 						</tbody>
 						</table>
-						<a href="ServletForm" class="btn btn-primary">Cerrar sesión</a>
+						<form action="ServletForm" method="post">
+							<input type="hidden" name="cerrar" value="cerrar">
+							<button type="submit" class="btn btn-primary">Cerrar sesión</button>
+						</form>
 					</div>
 				</div>
 			</div>

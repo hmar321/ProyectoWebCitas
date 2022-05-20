@@ -53,9 +53,11 @@ public class ServletForm extends HttpServlet {
 			} else if (request.getParameter("email") != null) {
 				loginUsuario(request, response);
 			} else if (request.getParameter("buscaNombre") != null) {
-				//buscaJugador(request, response);
-			} else {
+				// buscaJugador(request, response);
+			} else if (request.getParameter("cerrar") != null) {
 				cerrarSesion(request, response);
+			} else {
+				mostrarError(response,"Error de conexión.");
 			}
 
 		} catch (Exception ex) {
@@ -68,10 +70,10 @@ public class ServletForm extends HttpServlet {
 	private static void cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession sesion = request.getSession();
 		sesion.invalidate();
-		request.setAttribute("mensaje", "Se ha cerrado la sesión.");
 		response.sendRedirect("index.html");
+		System.out.println("Sesión cerrada");
 	}
-	
+
 	private static void loginUsuario(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		HttpSession sesion = request.getSession();
@@ -81,23 +83,23 @@ public class ServletForm extends HttpServlet {
 		// deberíamos buscar el usuario en la base de datos, pero
 		// ponemos un ejemplo en el mismo código
 		for (int i = 0; i < lista.size(); i++) {
-			String baseEmail=lista.get(i).getEmail();
-			String basePwd=lista.get(i).getContrasena();
-			if (sEmail.equals(baseEmail) && sPwd.equals(basePwd) && sesion.getAttribute("email") == null) {/** esta mal*/
-				Usuarios usuario=Controller.getUsuario(sEmail);
+			String baseEmail = lista.get(i).getEmail();
+			String basePwd = lista.get(i).getContrasena();
+			if (sEmail.equals(baseEmail) && sPwd.equals(basePwd)
+					&& sesion.getAttribute("email") == null) {
+				Usuarios usuario = Controller.getUsuario(sEmail);
 				// si coincide email y password y además no hay sesión iniciada
 				sesion.setAttribute("usuario", usuario);
 				// redirijo a página con información de login exitoso
 				response.sendRedirect("perfil.jsp");
 			} else {
 				// lógica para login inválido
-				mostrarError(response,"El usuario "+sEmail+" no tiene acceso");
+				mostrarError(response, "El usuario " + sEmail + " no tiene acceso");
 			}
 		}
-		
 
 	}
-	
+
 	private static void altaUsuario(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 			/** 1- recogida de datos */
@@ -138,11 +140,11 @@ public class ServletForm extends HttpServlet {
 				out.close();
 			} else {
 				// Mostramos que se ha producido un error
-				mostrarError(response,"No se ha insertado el usuario");
+				mostrarError(response, "No se ha insertado el usuario");
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			mostrarError(response,"Error en servletRegistro");
+			mostrarError(response, "Error en servletRegistro");
 		}
 	}
 
@@ -155,7 +157,7 @@ public class ServletForm extends HttpServlet {
 				+ "  <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n"
 				+ "</HEAD>\n" + "<BODY>\n" + "<div class=\"container mt-3\">\n"
 				+ "<h1 class=\"text-danger\">Error interno<h1>\n" + "<h2 class=\"text-danger\">" + sMensaje + "<h2>\n"
-				+ "<img src=\"img/error.jpg\" class=\"rounded\" alt=\"error interno\">" + "</div></BODY></HTML>");
+				+ "<img src=\"img/error.png\" class=\"rounded\" alt=\"error interno\">" + "</div></BODY></HTML>");
 		out.close();
 	}
 
