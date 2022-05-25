@@ -7,7 +7,7 @@
 <html lang="es">
 
 <head>
-<title>Paises</title>
+<title>Países</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
@@ -35,7 +35,7 @@
 				<li class="nav-item"><a class="nav-link" href="login.html">Login</a>
 				</li>
 				<li class="nav-item"><a class="nav-link active"
-					href="paises.jsp">Paises</a></li>
+					href="paises.jsp">Países</a></li>
 				<li class="nav-item"><a class="nav-link" href="centros.jsp">Centros</a>
 				</li>
 			</ul>

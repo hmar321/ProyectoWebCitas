@@ -7,7 +7,13 @@
 <html lang="es">
 
 <head>
-<title>Países</title>
+<%
+HttpSession sesion = request.getSession();
+if (sesion.getAttribute("usuario") == null) {
+	response.sendRedirect("index.html");
+}
+%>
+<title>Menú</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
@@ -20,7 +26,7 @@
 
 <body>
 
-	<div id="h_paises" class="p-5 bg-dark text-white text-center">
+	<div id="h_index" class="p-5 bg-dark text-white text-center">
 		<h1 class="texto-borde">BuscoPareja</h1>
 		<h3 class="texto-borde">Empieza algo real</h3>
 	</div>
@@ -28,46 +34,19 @@
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<div class="container-fluid">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="menuin.html">Menú</a>
-				</li>
+				<li class="nav-item"><a class="nav-link active"
+					href="menuin.jsp">Menú</a></li>
 				<li class="nav-item"><a class="nav-link" href="perfil.jsp">Perfil</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="usuarios.jsp">Usuarios</a>
 				</li>
-				<li class="nav-item"><a class="nav-link active"
-					href="paisesin.jsp">Países</a></li>
+				<li class="nav-item"><a class="nav-link" href="paisesin.jsp">Países</a>
+				</li>
 				<li class="nav-item"><a class="nav-link" href="centrosin.jsp">Centros</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
-
-	<div class="container mt-5">
-		<div class="row">
-			<table class="table table-dark table-striped">
-				<thead>
-					<tr>
-						<th>Nombre</th>
-						<th>Usuarios</th>
-					</tr>
-				</thead>
-				<tbody>
-					<%
-					HttpSession sesion = request.getSession();
-					if (sesion.getAttribute("usuario") == null) {
-						response.sendRedirect("index.html");
-					}
-					LinkedList<Paises> lista = Controller.getPaises();
-					for (int i = 0; i < lista.size(); i++) {
-						out.println("<td>" + lista.get(i).getPais() + "</td>");
-						out.println("<td>" + lista.get(i).getN_usuarios() + "</td>");
-						out.println("</tr>");
-					}
-					%>
-				</tbody>
-			</table>
-		</div>
-	</div>
 
 	<div class="mt-5 p-4 bg-dark text-white text-center">
 		<h2>Contacto</h2>

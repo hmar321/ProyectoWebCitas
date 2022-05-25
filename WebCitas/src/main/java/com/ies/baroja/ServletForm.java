@@ -55,18 +55,18 @@ public class ServletForm extends HttpServlet {
 				altaUsuario(request, response);
 			} else if (request.getParameter("email") != null) {
 				loginUsuario(request, response);
-			} else if (request.getParameter("buscaNombre") != null) {
+			} else if (request.getParameter("buscaUsuario") != null) {
 				// buscaJugador(request, response);
 			} else if (request.getParameter("cerrar") != null) {
 				cerrarSesion(request, response);
 			} else {
-				mostrarError(response, "Error de conexión.");
+				response.sendRedirect("index.html");
 			}
 
 		} catch (Exception ex) {
-			System.out.println("Error en servlet lin 64");
+			System.out.println("Error en servlet");
 			ex.printStackTrace();
-			mostrarError(response, "Error al dar de alta al usuario");
+			mostrarError(response, "Error");
 		}
 	}
 

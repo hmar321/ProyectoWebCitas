@@ -16,6 +16,14 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="css/interfaz.css">
+<%
+try {
+	HttpSession sesion = request.getSession();
+} catch (Exception e) {
+	e.printStackTrace();
+	response.sendRedirect("index.html");
+}
+%>
 </head>
 
 <body>
@@ -34,7 +42,7 @@
 				</li>
 				<li class="nav-item"><a class="nav-link" href="usuarios.jsp">Usuarios</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="paisesin.jsp">Paises</a></li>
+				<li class="nav-item"><a class="nav-link" href="paisesin.jsp">Países</a></li>
 				<li class="nav-item"><a class="nav-link active"
 					href="centrosin.jsp">Centros</a></li>
 			</ul>
@@ -56,6 +64,10 @@
 				</thead>
 				<tbody>
 					<%
+					HttpSession sesion = request.getSession();
+					if (sesion.getAttribute("usuario") == null) {
+						response.sendRedirect("index.html");
+					}
 					LinkedList<Centros> lista = Controller.getCentros();
 					for (int i = 0; i < lista.size(); i++) {
 						out.println("<td>" + lista.get(i).getCentro() + "</td>");

@@ -6,7 +6,6 @@ CREATE TABLE paises (
 	pais VARCHAR(50) NOT NULL,
 	n_usuarios INT NOT NULL DEFAULT 0,
 	ultima_actualizacion TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-	
 	PRIMARY KEY (pais)
 );
 
@@ -67,25 +66,28 @@ CREATE TABLE citas(
 	FOREIGN KEY (id_persona2) REFERENCES usuarios(usuario_id)
 );
 
+INSERT INTO web_citas.paises (pais) VALUES
+	('España'),
+	('Francia'),
+	('Reino Unido'),
+	('Alemania'),
+	('Países Bajos'),
+	('Bélgica'),
+	('Polonia'),
+	('Rumania'),
+	('Italia')
+;
+INSERT INTO web_citas.usuarios (nombre,direccion,ciudad,pais,sexo,email,contrasena) VALUES
+('admin','x','x','España','Masculino','admin@gmail.com','admin')
+;
+
 DELIMITER $$
-CREATE TRIGGER web_citas.contadorUsuarios 
+CREATE TRIGGER web_citas.UsuarioPais 
 AFTER INSERT ON web_citas.usuarios
 	FOR EACH ROW
 	BEGIN
 	UPDATE paises SET n_usuarios=n_usuarios+1 WHERE paises.pais=NEW.pais;
 END;
-
-INSERT INTO web_citas.paises (pais,ultima_actualizacion) VALUES
-	('España',DEFAULT),
-	('Francia',DEFAULT),
-	('Reino Unido',DEFAULT),
-	('Alemania',DEFAULT),
-	('Paises Bajos',DEFAULT),
-	('Belgica',DEFAULT),
-	('Polonia',DEFAULT),
-	('Rumania',DEFAULT),
-	('Italia',DEFAULT)
-;
 
 INSERT INTO web_citas.centros (cp,centro,direccion,ciudad,pais,web) VALUES
 	(28012,'Restaurante DCorazon','Pl. Mayor, 30','Madrid','España','thefork.es'),
@@ -93,4 +95,8 @@ INSERT INTO web_citas.centros (cp,centro,direccion,ciudad,pais,web) VALUES
 	(28001,'Restaurante La Bien Aparecida','C. de Jorge Juan, 8','Madrid','España','restaurantelabienaparecida.com'),
 	(28013,'Restaurante Gloria Bendita','Calle de Santiago, 3','Madrid','España','thefork.es'),
 	(28012,'Restaurante Arrabal','Pl. Mayor, 23','Madrid','España','opentable.es/thefork.es')
+;
+
+INSERT INTO web_citas.usuarios (nombre,direccion,ciudad,pais,sexo,email,contrasena) VALUES
+('usuario','C/Tolosa,2,12345','Madrid','España','Masculino','usuario@gmail.com','usuario')
 ;

@@ -34,7 +34,7 @@
 					href="registrarse.html">Registrarse</a></li>
 				<li class="nav-item"><a class="nav-link" href="login.html">Login</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="paises.jsp">Paises</a></li>
+				<li class="nav-item"><a class="nav-link" href="paises.jsp">Países</a></li>
 				<li class="nav-item"><a class="nav-link active"
 					href="centros.jsp">Centros</a></li>
 			</ul>
