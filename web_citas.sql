@@ -66,3 +66,31 @@ CREATE TABLE citas(
 	FOREIGN KEY (id_persona1) REFERENCES usuarios(usuario_id),
 	FOREIGN KEY (id_persona2) REFERENCES usuarios(usuario_id)
 );
+
+DELIMITER $$
+CREATE TRIGGER web_citas.contadorUsuarios 
+AFTER INSERT ON web_citas.usuarios
+	FOR EACH ROW
+	BEGIN
+	UPDATE paises SET n_usuarios=n_usuarios+1 WHERE paises.pais=NEW.pais;
+END;
+
+INSERT INTO web_citas.paises (pais,ultima_actualizacion) VALUES
+	('España',DEFAULT),
+	('Francia',DEFAULT),
+	('Reino Unido',DEFAULT),
+	('Alemania',DEFAULT),
+	('Paises Bajos',DEFAULT),
+	('Belgica',DEFAULT),
+	('Polonia',DEFAULT),
+	('Rumania',DEFAULT),
+	('Italia',DEFAULT)
+;
+
+INSERT INTO web_citas.centros (cp,centro,direccion,ciudad,pais,web) VALUES
+	(28012,'Restaurante DCorazon','Pl. Mayor, 30','Madrid','España','thefork.es'),
+	(28004,'Restaurante Ático','C. del Marqués de Valdeiglesias, 1','Madrid','España','theprincipalmadridhotel.com'),
+	(28001,'Restaurante La Bien Aparecida','C. de Jorge Juan, 8','Madrid','España','restaurantelabienaparecida.com'),
+	(28013,'Restaurante Gloria Bendita','Calle de Santiago, 3','Madrid','España','thefork.es'),
+	(28012,'Restaurante Arrabal','Pl. Mayor, 23','Madrid','España','opentable.es/thefork.es')
+;

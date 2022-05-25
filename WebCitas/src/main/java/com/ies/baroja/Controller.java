@@ -10,13 +10,17 @@ import com.model.Paises;
 import com.model.Usuarios;
 import com.mysql.jdbc.PreparedStatement;
 import com.bbdd.ConexionBBDD;
-
+/**
+ * Clase que conecta el servlet con la base de datos
+ * 
+ * @author Héctor
+ * @since 27/04/2021
+ */
 public class Controller {
 	private static String sConsultaUsuarios = "SELECT Nombre, Direccion,Ciudad,Pais,Sexo,Pareja,Email,Contrasena FROM usuarios;";
 	private static String sConsultaPaises = "SELECT pais,n_usuarios FROM paises;";
 	private static String sConsultaCentros = "SELECT cp,centro,direccion,ciudad,pais,web FROM centros;";
 	private static String sConsultaCitas = "SELECT cita_id, fech_hora,centro_id,fracaso,id_u1,id_u2 FROM usuarios;";
-
 	/**
 	 * Devolver lista de usuarios
 	 * 

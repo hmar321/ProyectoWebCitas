@@ -61,6 +61,7 @@
 					LinkedList<Usuarios> lista = Controller.getUsuarios();
 					for (int i = 0; i < lista.size(); i++) {
 						out.println("<td>" + lista.get(i).getNombre() + "</td>");
+						out.println("<td>" + lista.get(i).getDireccion() + "</td>");
 						out.println("<td>" + lista.get(i).getCiudad() + "</td>");
 						out.println("<td>" + lista.get(i).getPais() + "</td>");
 						out.println("<td>" + lista.get(i).getSexo() + "</td>");

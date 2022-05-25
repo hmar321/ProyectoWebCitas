@@ -1,5 +1,9 @@
 package com.model;
-
+/**
+ * Clase que crea objetos para la tabla categorias
+ * @author Héctor
+ *
+ */
 public class Categorias {
 	private String categoria_id;
 	private String categoria;

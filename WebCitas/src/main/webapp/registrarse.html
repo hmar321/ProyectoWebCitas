@@ -44,20 +44,20 @@
       <form action="ServletForm" method="post">
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre:</label>
-          <input type="text" class="form-control" name="nombre" required pattern="[a-zA-z]{2,25}[\s]{1}[a-zA-z]{2,24}" title="Solo se admiten letras.Si tu nombre o apellido es demasiado largo introduce solo las primeras letras."
+          <input type="text" class="form-control" name="nombre" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚü]{2,25}[\s]{1}[a-zA-z]{2,24}" title="Solo se admiten letras.Si tu nombre o apellido es demasiado largo introduce solo las primeras letras."
             placeholder="1-Apellido 1-Nombre">
         </div>
         <div class="mb-3">
           <label for="direccion" class="form-label">Dirección:</label>
-          <input type="text" class="form-control" name="direccion" required pattern="C/[a-zA-Z]{2,25},[0-9]{1,3},[0-9]{5}" title="Asegurate de no introducir espacios y de que todos los datos sean correctos." placeholder="C/Tolosa,2,28041">
+          <input type="text" class="form-control" name="direccion" required pattern="C/[a-zA-ZñÑáéíóúÁÉÍÓÚü]{2,25},[0-9]{1,3},[0-9]{5}" title="Calle,número,código postal" placeholder="C/Tolosa,2,28041">
         </div>
         <div class="mb-3">
           <label for="ciudad" class="form-label">Ciudad:</label>
-          <input type="text" class="form-control" name="ciudad" required pattern="[a-zA-z]{2,50}" title="Asegurate de que la ciudad coincide con el país." placeholder="Madrid">
+          <input type="text" class="form-control" name="ciudad" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚü]{2,50}" title="Asegurate de que la ciudad coincide con el país." placeholder="Madrid">
         </div>
         <div class="mb-3">
           <label for="pais" class="form-label">País:</label>
-          <input type="text" class="form-control" name="pais" required pattern="[a-zA-z]{2,50}" title="Introduce un país dentro de nuesta base de datos." placeholder="Espana">
+          <input type="text" class="form-control" name="pais" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚü]{2,50}" title="Introduce un país dentro de nuesta base de datos." placeholder="Espana">
         </div>
         <div class="mb-3">
           <label for="sexo" class="form-label">Género:</label>

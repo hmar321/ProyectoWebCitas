@@ -20,7 +20,7 @@
 
 <body>
 
-	<div id="h_paises" class="p-5 bg-dark text-white text-center">
+	<div id="h_centro" class="p-5 bg-dark text-white text-center">
 		<h1 class="texto-borde">BuscoPareja</h1>
 		<h3 class="texto-borde">Empieza algo real</h3>
 	</div>

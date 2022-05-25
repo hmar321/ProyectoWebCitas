@@ -13,7 +13,7 @@ import com.model.Citas;
 import com.mysql.jdbc.PreparedStatement;
 
 /**
- * Servlet implementation class ServletForm
+ * Servlet no sirve de nada pero lo dejo porque me comentaron que no debia borrar nada
  */
 @WebServlet("/ServletCitaS")
 public class ServletCitas extends HttpServlet {

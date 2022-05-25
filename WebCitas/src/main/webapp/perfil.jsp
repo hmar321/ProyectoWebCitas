@@ -45,12 +45,12 @@
 	<div class="container mt-5">
 		<div class="row">
 
-			<div class="col-sm-4">
+			<div class="col-sm-7">
 				<h2>Perfil</h2>
 				<div class="card">
 					<div class="card-body">
 						<img class="card-img-top" src="images/perfil.png" alt="Perfil"
-							style="width: 100%">
+							style="width:300px">
 
 						<%
 						HttpSession sesion = request.getSession();
@@ -81,7 +81,7 @@
 				</div>
 			</div>
 
-			<div class="col-sm-8">
+			<div class="col-sm-5">
 				<h3 class="mt-4">Conoce a tu persona especial</h3>
 				<ul class="nav nav-pills flex-column">
 					<li class="nav-item"><a class="nav-link" href="buscar.html">Buscar
