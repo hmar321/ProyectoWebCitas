@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="com.model.Centros"%>
+<%@ page import="com.model.Usuarios"%>
+<%@ page import="com.model.Citas"%>
 <%@ page import="com.ies.baroja.Controller"%>
 <%@ page import="java.util.LinkedList"%>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-<title>Centros</title>
+<title>Citas</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
@@ -20,7 +21,7 @@
 
 <body>
 
-	<div id="h_centro" class="p-5 bg-dark text-white text-center">
+	<div id="h_index" class="p-5 bg-dark text-white text-center">
 		<h1 class="texto-borde">BuscoPareja</h1>
 		<h3 class="texto-borde">Empieza algo real</h3>
 	</div>
@@ -28,15 +29,14 @@
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<div class="container-fluid">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="menuin.html">Menú</a>
+				<li class="nav-item"><a class="nav-link" href="menuin.jsp">Menú</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="perfil.jsp">Perfil</a>
-				</li>
+				<li class="nav-item"><a class="nav-link active"
+					href="perfil.jsp">Perfil</a></li>
 				<li class="nav-item"><a class="nav-link" href="usuarios.jsp">Usuarios</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="paisesin.jsp">Países</a></li>
-				<li class="nav-item"><a class="nav-link active"
-					href="centrosin.jsp">Centros</a></li>
+				<li class="nav-item"><a class="nav-link" href="centrosin.jsp">Centros</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -46,29 +46,30 @@
 			<table class="table table-dark table-striped">
 				<thead>
 					<tr>
-						<th>Centro</th>
-						<th>País</th>
-						<th>Ciudad</th>
-						<th>Dirección</th>
-						<th>Código Postal</th>
-						<th>Web</th>
+						<th>Fecha y hora</th>
+						<th>Estadp</th>
+						<th>Usuario 1</th>
+						<th>Usuario 2</th>
 					</tr>
 				</thead>
 				<tbody>
 					<%
-					HttpSession sesion = request.getSession();
-					if (sesion.getAttribute("usuario") == null) {
+					try {
+						HttpSession sesion = request.getSession();
+						Usuarios usuario = (Usuarios) sesion.getAttribute("usuario");
+						LinkedList<Citas> lista = Controller.getCitas();
+						for (int i = 0; i < lista.size(); i++) {
+							if (usuario.getEmail() == lista.get(i).getEmail1() || usuario.getEmail() == lista.get(i).getEmail2()) {
+								out.println("<td>" + lista.get(i).getFecha_hora() + "</td>");
+								out.println("<td>" + lista.get(i).getFracaso() + "</td>");
+								out.println("<td>" + lista.get(i).getEmail1() + "</td>");
+								out.println("<td>" + lista.get(i).getEmail2() + "</td>");
+								out.println("</tr>");
+							}
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
 						response.sendRedirect("index.html");
-					}
-					LinkedList<Centros> lista = Controller.getCentros();
-					for (int i = 0; i < lista.size(); i++) {
-						out.println("<td>" + lista.get(i).getCentro() + "</td>");
-						out.println("<td>" + lista.get(i).getPais() + "</td>");
-						out.println("<td>" + lista.get(i).getCiudad() + "</td>");
-						out.println("<td>" + lista.get(i).getDireccion() + "</td>");
-						out.println("<td>" + lista.get(i).getCp() + "</td>");
-						out.println("<td>" + lista.get(i).getWeb() + "</td>");
-						out.println("</tr>");
 					}
 					%>
 				</tbody>

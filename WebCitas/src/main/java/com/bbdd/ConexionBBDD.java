@@ -84,8 +84,8 @@ public class ConexionBBDD {
 			PreparedStatement prepStatement = conexion.prepareStatement(sInsert);
 			prepStatement.setString(1, cita.getFecha_hora());
 			prepStatement.setString(2, cita.getCentro_id());
-			prepStatement.setString(3, cita.getId_u1());
-			prepStatement.setString(4, cita.getId_u2());
+			prepStatement.setString(3, cita.getEmail1());
+			prepStatement.setString(4, cita.getEmail2());
 			iRes = prepStatement.executeUpdate();
 		} catch (SQLException sqlex) {
 			System.out.println("Error : " + sqlex.getMessage());

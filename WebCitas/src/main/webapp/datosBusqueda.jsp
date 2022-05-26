@@ -7,7 +7,7 @@
 <html lang="es">
 
 <head>
-<title>Perfil</title>
+<title>Resultado busqueda</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
@@ -45,8 +45,8 @@
 	<div class="container mt-5">
 		<div class="row">
 
-			<div class="col-sm-7">
-				<h2>Perfil</h2>
+			
+				<h2>Usuario encontrado</h2>
 				<div class="card">
 					<div class="card-body">
 						<img class="card-img-top" src="images/perfil.png" alt="Perfil"
@@ -56,15 +56,12 @@
 						try {
 							HttpSession sesion = request.getSession();
 							Usuarios usuario = (Usuarios) sesion.getAttribute("usuario");
-							out.println("<h4 class=\"card-title\">" + usuario.getNombre() + "</h4>");
 							out.println("<table class=\"table table-bordered\">");
 							out.println("<tbody>");
 							out.println("<tr><th>País</th>");
 							out.println("<td>" + usuario.getPais() + "</td></tr>");
 							out.println("<tr><th>Ciudad</th>");
 							out.println("<td>" + usuario.getCiudad() + "</td></tr>");
-							out.println("<tr><th>Dirección</th>");
-							out.println("<td>" + usuario.getDireccion() + "</td></tr>");
 							out.println("<tr><th>Sexo</th>");
 							out.println("<td>" + usuario.getSexo() + "</td></tr>");
 							out.println("<tr><th>Pareja</th>");
@@ -78,26 +75,12 @@
 						%>
 						</tbody>
 						</table>
-						<form action="ServletForm" method="post">
-							<input type="hidden" name="cerrar" value="cerrar">
-							<button type="submit" class="btn btn-primary">Cerrar
-								sesión</button>
-						</form>
+						<a class="btn btn-primary" href="perfil.jsp">Volver</a>
 					</div>
 				</div>
-			</div>
+		
 
-			<div class="col-sm-5">
-				<h3 class="mt-4">Conoce a tu persona especial</h3>
-				<ul class="nav nav-pills flex-column">
-					<li class="nav-item"><a class="btn btn-dark" href="buscar.jsp">Buscar
-							perfil</a></li></br>
-					<li class="nav-item"><a class="btn btn-dark" href="ucitas.jsp">Tus
-							citas</a></li></br>
-					<li class="nav-item"><a class="btn btn-dark" href="addcita.jsp">Añadir
-							cita</a></li>
-				</ul>
-			</div>
+			
 		</div>
 	</div>
 

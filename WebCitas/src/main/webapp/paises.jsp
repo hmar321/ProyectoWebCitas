@@ -47,7 +47,7 @@
 			<table class="table table-dark table-striped">
 				<thead>
 					<tr>
-						<th>Nombre</th>
+						<th>País</th>
 						<th>Usuarios</th>
 					</tr>
 				</thead>

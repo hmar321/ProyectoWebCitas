@@ -5,24 +5,24 @@ public class Citas {
 	private String fecha_hora;
 	private String centro_id;
 	private String fracaso;
-	private String id_u1;
-	private String id_u2;
+	private String email1;
+	private String email2;
 	
 	/**
 	 * @param id_cita
 	 * @param fecha_hora
 	 * @param centro_id
 	 * @param fracaso
-	 * @param id_u1
-	 * @param id_u2
+	 * @param email1
+	 * @param email2
 	 */
-	public Citas(String id_cita, String fecha_hora, String centro_id, String fracaso, String id_u1, String id_u2) {
+	public Citas(String id_cita, String fecha_hora, String centro_id, String fracaso, String email1, String email2) {
 		this.id_cita = id_cita;
 		this.fecha_hora = fecha_hora;
 		this.centro_id = centro_id;
 		this.fracaso = fracaso;
-		this.id_u1 = id_u1;
-		this.id_u2 = id_u2;
+		this.email1 = email1;
+		this.email2 = email2;
 	}
 
 	/**
@@ -82,31 +82,31 @@ public class Citas {
 	}
 
 	/**
-	 * @return the id_u1
+	 * @return the email1
 	 */
-	public String getId_u1() {
-		return id_u1;
+	public String getEmail1() {
+		return email1;
 	}
 
 	/**
-	 * @param id_u1 the id_u1 to set
+	 * @param email1 the email1 to set
 	 */
-	public void setId_u1(String id_u1) {
-		this.id_u1 = id_u1;
+	public void setEmail1(String email1) {
+		this.email1 = email1;
 	}
 
 	/**
-	 * @return the id_u2
+	 * @return the email2
 	 */
-	public String getId_u2() {
-		return id_u2;
+	public String getEmail2() {
+		return email2;
 	}
 
 	/**
-	 * @param id_u2 the id_u2 to set
+	 * @param email2 the email2 to set
 	 */
-	public void setId_u2(String id_u2) {
-		this.id_u2 = id_u2;
+	public void setEmail2(String email2) {
+		this.email2 = email2;
 	}
 	/**
 	 * @return the String
@@ -121,9 +121,9 @@ public class Citas {
 		sbResultado.append(" ");
 		sbResultado.append(fracaso);
 		sbResultado.append(" ");
-		sbResultado.append(id_u1);
+		sbResultado.append(email1);
 		sbResultado.append(" ");
-		sbResultado.append(id_u2);
+		sbResultado.append(email2);
 		sbResultado.append("; \n");
 		return sbResultado.toString();
 	}

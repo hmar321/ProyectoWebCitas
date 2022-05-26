@@ -63,7 +63,7 @@ public class ServletCitas extends HttpServlet {
 						+ "<ul class=\"list-group\"> \n" + " <LI class=\"list-group-item\">nombre: "
 						+ cita.getCentro_id() + "</li>\n" + " <LI class=\"list-group-item\">procedencia: "
 						+ cita.getFecha_hora() + "</li>\n" + "<LI class=\"list-group-item\">altura: "
-						+ cita.getId_u1() + "</li>\n" + " <LI class=\"list-group-item\">peso: " + cita.getId_u2()
+						+ "</li>\n" + " <LI class=\"list-group-item\">peso: "
 						+ "</li>\n"
 						+ "</UL>\n" + "</div></BODY></HTML>");
 				out.close();
