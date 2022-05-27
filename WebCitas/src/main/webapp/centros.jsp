@@ -56,15 +56,21 @@
 				</thead>
 				<tbody>
 					<%
-					LinkedList<Centros> lista = Controller.getCentros();
-					for (int i = 0; i < lista.size(); i++) {
-						out.println("<td>" + lista.get(i).getCentro() + "</td>");
-						out.println("<td>" + lista.get(i).getPais() + "</td>");
-						out.println("<td>" + lista.get(i).getCiudad() + "</td>");
-						out.println("<td>" + lista.get(i).getDireccion() + "</td>");
-						out.println("<td>" + lista.get(i).getCp() + "</td>");
-						out.println("<td>" + lista.get(i).getWeb() + "</td>");
-						out.println("</tr>");
+					try {
+						LinkedList<Centros> lista = Controller.getCentros();
+						for (int i = 0; i < lista.size(); i++) {
+							out.println("<td>" + lista.get(i).getCentro() + "</td>");
+							out.println("<td>" + lista.get(i).getPais() + "</td>");
+							out.println("<td>" + lista.get(i).getCiudad() + "</td>");
+							out.println("<td>" + lista.get(i).getDireccion() + "</td>");
+							out.println("<td>" + lista.get(i).getCp() + "</td>");
+							out.println("<td>" + lista.get(i).getWeb() + "</td>");
+							out.println("</tr>");
+						}
+					} catch (Exception ex) {
+						ex.printStackTrace();
+						out.println("<h1 class=\"text-warning\">Ha ocurrido un error :(</h1>\r\n"
+						+ "      <h2 class=\"text-danger\">No se ha podido conectar con la base de datos</h2>\r\n");
 					}
 					%>
 				</tbody>

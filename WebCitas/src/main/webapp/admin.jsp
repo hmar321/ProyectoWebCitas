@@ -60,9 +60,9 @@
 				</thead>
 				<tbody>
 					<%
-					LinkedList<Usuarios> lista = Controller.getUsuarios();
-					for (int i = 0; i < lista.size(); i++) {
-						if (lista.get(i).getEmail() == lista.get(0).getEmail()) {
+					try {
+						LinkedList<Usuarios> lista = Controller.getUsuarios();
+						for (int i = 0; i < lista.size(); i++) {
 							out.println("<td>" + lista.get(i).getNombre() + "</td>");
 							out.println("<td>" + lista.get(i).getDireccion() + "</td>");
 							out.println("<td>" + lista.get(i).getCiudad() + "</td>");
@@ -70,21 +70,13 @@
 							out.println("<td>" + lista.get(i).getSexo() + "</td>");
 							out.println("<td>" + lista.get(i).getPareja() + "</td>");
 							out.println("<td>" + lista.get(i).getEmail() + "</td>");
-
-							out.println("<td>" + lista.get(i).getEmail() + "</td>");
-							out.println("</tr>");
-						}else{
-							out.println("<td>" + lista.get(i).getNombre() + "</td>");
-							out.println("<td>" + lista.get(i).getDireccion() + "</td>");
-							out.println("<td>" + lista.get(i).getCiudad() + "</td>");
-							out.println("<td>" + lista.get(i).getPais() + "</td>");
-							out.println("<td>" + lista.get(i).getSexo() + "</td>");
-							out.println("<td>" + lista.get(i).getPareja() + "</td>");
-							out.println("<td>" + lista.get(i).getEmail() + "</td>");
-							
-							out.println("<td>" + lista.get(i).getEmail() + "</td>");
+							out.println("<td>borrar</td>");
 							out.println("</tr>");
 						}
+					} catch (Exception ex) {
+						ex.printStackTrace();
+						out.println("<h1 class=\"text-warning\">Ha ocurrido un error :(</h1>\r\n"
+						+ "      <h2 class=\"text-danger\">No se ha podido conectar con la base de datos</h2>\r\n");
 					}
 					%>
 				</tbody>

@@ -1,42 +1,22 @@
 package com.model;
 
 public class Citas {
-	private String id_cita;
 	private String fecha_hora;
 	private String centro_id;
-	private String fracaso;
 	private String email1;
 	private String email2;
 	
 	/**
-	 * @param id_cita
 	 * @param fecha_hora
 	 * @param centro_id
-	 * @param fracaso
 	 * @param email1
 	 * @param email2
 	 */
-	public Citas(String id_cita, String fecha_hora, String centro_id, String fracaso, String email1, String email2) {
-		this.id_cita = id_cita;
+	public Citas(String fecha_hora, String centro_id, String email1, String email2) {
 		this.fecha_hora = fecha_hora;
 		this.centro_id = centro_id;
-		this.fracaso = fracaso;
 		this.email1 = email1;
 		this.email2 = email2;
-	}
-
-	/**
-	 * @return the id_cita
-	 */
-	public String getId_cita() {
-		return id_cita;
-	}
-
-	/**
-	 * @param id_cita the id_cita to set
-	 */
-	public void setId_cita(String id_cita) {
-		this.id_cita = id_cita;
 	}
 
 	/**
@@ -65,20 +45,6 @@ public class Citas {
 	 */
 	public void setCentro_id(String centro_id) {
 		this.centro_id = centro_id;
-	}
-
-	/**
-	 * @return the fracaso
-	 */
-	public String getFracaso() {
-		return fracaso;
-	}
-
-	/**
-	 * @param fracaso the fracaso to set
-	 */
-	public void setFracaso(String fracaso) {
-		this.fracaso = fracaso;
 	}
 
 	/**
@@ -113,13 +79,9 @@ public class Citas {
 	 */
 	public String toString() {
 		StringBuffer sbResultado = new StringBuffer();
-		sbResultado.append(id_cita);
-		sbResultado.append(" ");
 		sbResultado.append(fecha_hora);
 		sbResultado.append(" ");
 		sbResultado.append(centro_id);
-		sbResultado.append(" ");
-		sbResultado.append(fracaso);
 		sbResultado.append(" ");
 		sbResultado.append(email1);
 		sbResultado.append(" ");

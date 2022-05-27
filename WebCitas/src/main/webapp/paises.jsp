@@ -53,11 +53,16 @@
 				</thead>
 				<tbody>
 					<%
-					LinkedList<Paises> lista = Controller.getPaises();
-					for (int i = 0; i < lista.size(); i++) {
-						out.println("<td>" + lista.get(i).getPais() + "</td>");
-						out.println("<td>" + lista.get(i).getN_usuarios() + "</td>");
-						out.println("</tr>");
+					try {
+						LinkedList<Paises> lista = Controller.getPaises();
+						for (int i = 0; i < lista.size(); i++) {
+							out.println("<td>" + lista.get(i).getPais() + "</td>");
+							out.println("<td>" + lista.get(i).getN_usuarios() + "</td>");
+							out.println("</tr>");
+						}
+					} catch (Exception ex) {
+						out.println("<h1 class=\"text-warning\">Ha ocurrido un error :(</h1>\r\n"
+								+ "      <h2 class=\"text-danger\">No se ha podido conectar con la base de datos</h2>\r\n");
 					}
 					%>
 				</tbody>

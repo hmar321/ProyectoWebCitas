@@ -10,6 +10,7 @@ import com.model.Paises;
 import com.model.Usuarios;
 import com.mysql.jdbc.PreparedStatement;
 import com.bbdd.ConexionBBDD;
+
 /**
  * Clase que conecta el servlet con la base de datos
  * 
@@ -20,7 +21,8 @@ public class Controller {
 	private static String sConsultaUsuarios = "SELECT Nombre, Direccion,Ciudad,Pais,Sexo,Pareja,Email,Contrasena FROM usuarios;";
 	private static String sConsultaPaises = "SELECT pais,n_usuarios FROM paises;";
 	private static String sConsultaCentros = "SELECT cp,centro,direccion,ciudad,pais,web FROM centros;";
-	private static String sConsultaCitas = "SELECT cita_id, fech_hora,centro_id,fracaso,id_u1,id_u2 FROM usuarios;";
+	private static String sConsultaCitas = "SELECT cita_id, fech_hora,centro_id,fracaso,id_persona1,id_persona2 FROM usuarios;";
+
 	/**
 	 * Devolver lista de usuarios
 	 * 
@@ -180,7 +182,7 @@ public class Controller {
 //----------------------------------------------------------------------Citas-----------------------------------------------------------------
 	public static LinkedList<Citas> getCitas() {
 		// Objeto con la lista de usuarios
-		LinkedList<Citas> listaUsuarios = new LinkedList<Citas>();
+		LinkedList<Citas> listaCitas = new LinkedList<Citas>();
 		// Primero conectamos a la BBDD
 		ConexionBBDD miConexion = new ConexionBBDD();
 		try {
@@ -191,25 +193,24 @@ public class Controller {
 				// Si hay resultado recuperamos los datos (como un FETCH de un CURSOR)
 				while (rsResultado.next()) {
 					// Creamos un objeto jugador por cada fila de la tabla (cada jugador)
-					Citas jugador = new Citas(rsResultado.getString("cita_id"), rsResultado.getString("fech_hora"),
-							rsResultado.getString("centro_id"), rsResultado.getString("fracaso"),
-							rsResultado.getString("id_u1"), rsResultado.getString("id_u2"));
+					Citas cita = new Citas(rsResultado.getString("fech_hora"), rsResultado.getString("centro_id"),
+							rsResultado.getString("id_persona1"), rsResultado.getString("id_persona1"));
 					// Lo insertamos en la lista
-					listaUsuarios.add(jugador);
+					listaCitas.add(cita);
 
 				}
 
 			} else {
 				System.out.println("La consulta no devuelve resultados");
 			}
-			System.out.println("Número de usuarios=" + listaUsuarios.size());
+			System.out.println("Número de usuarios=" + listaCitas.size());
 		} catch (SQLException sqlex) {
 			System.out.println("Error: " + sqlex.getMessage());
 			sqlex.printStackTrace();
 		} finally {
 			miConexion.desconectar();
 		}
-		return listaUsuarios;
+		return listaCitas;
 	}
 
 	public static boolean insertar(Citas cita) {
