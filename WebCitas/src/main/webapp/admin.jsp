@@ -59,6 +59,7 @@ if (sesion.getAttribute("usuario") == null) {
 					try {
 						LinkedList<Usuarios> lista = Controller.getUsuarios();
 						for (int i = 0; i < lista.size(); i++) {
+<<<<<<< HEAD
 							if (lista.get(i).getEmail() == lista.get(0).getEmail()) {
 						out.println("<td>" + lista.get(i).getNombre() + "</td>");
 						out.println("<td>" + lista.get(i).getDireccion() + "</td>");
@@ -81,6 +82,17 @@ if (sesion.getAttribute("usuario") == null) {
 						out.println("<td>" + lista.get(i).getEmail() + "</td>");
 						out.println("</tr>");
 							}
+=======
+							out.println("<td>" + lista.get(i).getNombre() + "</td>");
+							out.println("<td>" + lista.get(i).getDireccion() + "</td>");
+							out.println("<td>" + lista.get(i).getCiudad() + "</td>");
+							out.println("<td>" + lista.get(i).getPais() + "</td>");
+							out.println("<td>" + lista.get(i).getSexo() + "</td>");
+							out.println("<td>" + lista.get(i).getPareja() + "</td>");
+							out.println("<td>" + lista.get(i).getEmail() + "</td>");
+							out.println("<td>borrar</td>");
+							out.println("</tr>");
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 						}
 					} catch (Exception ex) {
 						ex.printStackTrace();

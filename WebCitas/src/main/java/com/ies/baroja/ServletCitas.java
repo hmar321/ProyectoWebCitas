@@ -13,7 +13,8 @@ import com.model.Citas;
 import com.mysql.jdbc.PreparedStatement;
 
 /**
- * Servlet no sirve de nada pero lo dejo porque me comentaron que no debia borrar nada
+ * Servlet no sirve de nada pero lo dejo porque me comentaron que no debia
+ * borrar nada
  */
 @WebServlet("/ServletCitaS")
 public class ServletCitas extends HttpServlet {
@@ -46,8 +47,13 @@ public class ServletCitas extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			/** 1- recogida de datos */
+<<<<<<< HEAD
 			Citas cita = new Citas( request.getParameter("id_cita"),request.getParameter("fecha"+" "+"hora"), request.getParameter("centro_id"),
 					request.getParameter("fracaso"));
+=======
+			Citas cita = new Citas(request.getParameter("fecha" + " " + "hora"), request.getParameter("centro"),
+					request.getParameter("email1"), request.getParameter("email2"));
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 			/** 2- Insertar cita en la base de datos */
 			boolean bRes = Controller.insertar(cita);
 			/** 3- Mostrar resultado por pantalla */
@@ -61,11 +67,17 @@ public class ServletCitas extends HttpServlet {
 						+ "</HEAD>\n" + "<BODY>\n" + "<div class=\"container mt-3\">\n"
 						+ "<h2 class=\"text-success\">Usuario insertado correctamente<h2>\n"
 						+ "<ul class=\"list-group\"> \n" + " <LI class=\"list-group-item\">nombre: "
+<<<<<<< HEAD
 						+ "</li>\n" + " <LI class=\"list-group-item\">procedencia: "
 						+ cita.getFecha_hora() + "</li>\n" + "<LI class=\"list-group-item\">altura: "
 						+ "</li>\n" + " <LI class=\"list-group-item\">peso: "
 						+ "</li>\n"
 						+ "</UL>\n" + "</div></BODY></HTML>");
+=======
+						+ cita.getCentro_id() + "</li>\n" + " <LI class=\"list-group-item\">procedencia: "
+						+ cita.getFecha_hora() + "</li>\n" + "<LI class=\"list-group-item\">altura: " + "</li>\n"
+						+ " <LI class=\"list-group-item\">peso: " + "</li>\n" + "</UL>\n" + "</div></BODY></HTML>");
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 				out.close();
 			} else {
 				// Mostramos que se ha producido un error

@@ -21,7 +21,11 @@ public class Controller {
 	private static String sConsultaUsuarios = "SELECT Nombre, Direccion,Ciudad,Pais,Sexo,Pareja,Email,Contrasena FROM usuarios;";
 	private static String sConsultaPaises = "SELECT pais,n_usuarios FROM paises;";
 	private static String sConsultaCentros = "SELECT cp,centro,direccion,ciudad,pais,web FROM centros;";
+<<<<<<< HEAD
 	private static String sConsultaCitas = "SELECT fech_hora,centro,email1,email2 FROM citas;";
+=======
+	private static String sConsultaCitas = "SELECT cita_id, fech_hora,centro_id,fracaso,id_persona1,id_persona2 FROM usuarios;";
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 
 	/**
 	 * Devolver lista de usuarios
@@ -182,7 +186,7 @@ public class Controller {
 //----------------------------------------------------------------------Citas-----------------------------------------------------------------
 	public static LinkedList<Citas> getCitasUsuario(Usuarios usuario) {
 		// Objeto con la lista de usuarios
-		LinkedList<Citas> listaUsuarios = new LinkedList<Citas>();
+		LinkedList<Citas> listaCitas = new LinkedList<Citas>();
 		// Primero conectamos a la BBDD
 		ConexionBBDD miConexion = new ConexionBBDD();
 		String sConsultaBuscaUsuario = "SELECT fech_hora, centro, email1, email2 FROM citas WHERE email1 = '"
@@ -195,24 +199,35 @@ public class Controller {
 				// Si hay resultado recuperamos los datos (como un FETCH de un CURSOR)
 				while (rsResultado.next()) {
 					// Creamos un objeto jugador por cada fila de la tabla (cada jugador)
+<<<<<<< HEAD
 					Citas cita = new Citas(rsResultado.getString("fech_hora"), rsResultado.getString("centro"),
 							rsResultado.getString("email1"), rsResultado.getString("email2"));
 					// Lo insertamos en la lista
 					listaUsuarios.add(cita);
+=======
+					Citas cita = new Citas(rsResultado.getString("fech_hora"), rsResultado.getString("centro_id"),
+							rsResultado.getString("id_persona1"), rsResultado.getString("id_persona1"));
+					// Lo insertamos en la lista
+					listaCitas.add(cita);
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 
 				}
 
 			} else {
 				System.out.println("La consulta no devuelve resultados");
 			}
+<<<<<<< HEAD
 			System.out.println("Número de citas del usuario=" + listaUsuarios.size());
+=======
+			System.out.println("Número de usuarios=" + listaCitas.size());
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 		} catch (SQLException sqlex) {
 			System.out.println("Error: " + sqlex.getMessage());
 			sqlex.printStackTrace();
 		} finally {
 			miConexion.desconectar();
 		}
-		return listaUsuarios;
+		return listaCitas;
 	}
 
 	public static boolean insertar(Citas cita) {

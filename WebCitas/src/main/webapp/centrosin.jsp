@@ -72,7 +72,11 @@
 					} catch (Exception ex) {
 						ex.printStackTrace();
 						out.println("<h1 class=\"text-warning\">Ha ocurrido un error :(</h1>\r\n"
+<<<<<<< HEAD
 						+ "      <h2 class=\"text-danger\">No se ha podido conectar con la base de datos</h2>\r\n");
+=======
+								+ "      <h2 class=\"text-danger\">No se ha podido conectar con la base de datos</h2>\r\n");
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 					}
 					%>
 				</tbody>

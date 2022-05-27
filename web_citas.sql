@@ -55,12 +55,21 @@ CREATE TABLE citas(
 	fech_hora DATETIME NOT NULL,
 	centro VARCHAR(50) NOT NULL,
 	fracaso ENUM('Si','No','Pendiente') NOT NULL DEFAULT 'Pendiente',
+<<<<<<< HEAD
 	email1 VARCHAR(50) NOT NULL,
 	email2 VARCHAR(50) NOT NULL,
 	PRIMARY KEY (cita_id,centro,email1,email2),
 	FOREIGN KEY (centro) REFERENCES centros(centro),
 	FOREIGN KEY (email1) REFERENCES usuarios(email),
 	FOREIGN KEY (email2) REFERENCES usuarios(email)
+=======
+	id_persona1 INT NOT NULL,
+	id_persona2 INT NOT NULL,
+	PRIMARY KEY (cita_id,centro_id,id_persona1,id_persona2),
+	FOREIGN KEY (centro_id) REFERENCES centros(centro_id),
+	FOREIGN KEY (id_persona1) REFERENCES usuarios(usuario_id),
+	FOREIGN KEY (id_persona2) REFERENCES usuarios(usuario_id)
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 );
 
 INSERT INTO web_citas.paises (pais) VALUES
@@ -102,6 +111,11 @@ INSERT INTO web_citas.usuarios (nombre,direccion,ciudad,pais,sexo,email,contrase
 ('usuario asd','C/Tolosa,2,12345','Madrid','España','Masculino','usuario2@gmail.com','usuario')
 ;
 
+<<<<<<< HEAD
 INSERT INTO web_citas.citas (fech_hora,centro,email1,email2) VALUES
 	('2022-05-21 17:00','Restaurante DCorazon','usuario@gmail.com','usuario2@gmail.com')
+=======
+INSERT INTO web_citas.citas (fech_hora,centro_id,id_persona1,id_persona2) VALUES
+	('2022-05-21 17:00',1,1,2)
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 ;

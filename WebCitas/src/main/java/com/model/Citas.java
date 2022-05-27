@@ -2,13 +2,18 @@ package com.model;
 
 public class Citas {
 	private String fecha_hora;
+<<<<<<< HEAD
 	private String centro;
+=======
+	private String centro_id;
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 	private String email1;
 	private String email2;
 	
 	
 	/**
 	 * @param fecha_hora
+<<<<<<< HEAD
 	 * @param centro
 	 * @param email1
 	 * @param email2
@@ -16,11 +21,23 @@ public class Citas {
 	public Citas(String fecha_hora, String centro, String email1, String email2) {
 		this.fecha_hora = fecha_hora;
 		this.centro = centro;
+=======
+	 * @param centro_id
+	 * @param email1
+	 * @param email2
+	 */
+	public Citas(String fecha_hora, String centro_id, String email1, String email2) {
+		this.fecha_hora = fecha_hora;
+		this.centro_id = centro_id;
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 		this.email1 = email1;
 		this.email2 = email2;
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 	/**
 	 * @return the fecha_hora
 	 */
@@ -44,6 +61,7 @@ public class Citas {
 		return centro;
 	}
 
+<<<<<<< HEAD
 
 	/**
 	 * @param centro the centro to set
@@ -53,6 +71,8 @@ public class Citas {
 	}
 
 
+=======
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 	/**
 	 * @return the email1
 	 */
@@ -92,7 +112,11 @@ public class Citas {
 		StringBuffer sbResultado = new StringBuffer();
 		sbResultado.append(fecha_hora);
 		sbResultado.append(" ");
+<<<<<<< HEAD
 		sbResultado.append(centro);
+=======
+		sbResultado.append(centro_id);
+>>>>>>> 826a86f3775e9a8ef91645f4c85d345a1f094dbb
 		sbResultado.append(" ");
 		sbResultado.append(email1);
 		sbResultado.append(" ");
