@@ -32,8 +32,6 @@
 				</li>
 				<li class="nav-item"><a class="nav-link active"
 					href="perfil.jsp">Perfil</a></li>
-				<li class="nav-item"><a class="nav-link" href="usuarios.jsp">Usuarios</a>
-				</li>
 				<li class="nav-item"><a class="nav-link" href="paisesin.jsp">Países</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="centrosin.jsp">Centros</a>
@@ -55,6 +53,9 @@
 						<%
 						try {
 							HttpSession sesion = request.getSession();
+							if (sesion.getAttribute("usuario") == null) {
+								response.sendRedirect("index.html");
+							}
 							Usuarios usuario = (Usuarios) sesion.getAttribute("usuario");
 							out.println("<h4 class=\"card-title\">" + usuario.getNombre() + "</h4>");
 							out.println("<table class=\"table table-bordered\">");
@@ -71,9 +72,10 @@
 							out.println("<td>" + usuario.getPareja() + "</td></tr>");
 							out.println("<tr><th>Email</th>");
 							out.println("<td>" + usuario.getEmail() + "</td></tr>");
-						} catch (Exception e) {
-							e.printStackTrace();
-							response.sendRedirect("index.html");
+						} catch (Exception ex) {
+							ex.printStackTrace();
+							out.println("<h1 class=\"text-warning\">Ha ocurrido un error :(</h1>\r\n"
+							+ "      <h2 class=\"text-danger\">No se ha podido conectar con la base de datos</h2>\r\n");
 						}
 						%>
 						</tbody>
@@ -91,11 +93,13 @@
 				<h3 class="mt-4">Conoce a tu persona especial</h3>
 				<ul class="nav nav-pills flex-column">
 					<li class="nav-item"><a class="btn btn-dark" href="buscar.jsp">Buscar
-							perfil</a></li></br>
+							perfil</a></li>
+					</br>
 					<li class="nav-item"><a class="btn btn-dark" href="ucitas.jsp">Tus
-							citas</a></li></br>
-					<li class="nav-item"><a class="btn btn-dark" href="addcita.jsp">Añadir
-							cita</a></li>
+							citas</a></li>
+					</br>
+					<li class="nav-item"><a class="btn btn-dark"
+						href="addcita.jsp">Añadir cita</a></li>
 				</ul>
 			</div>
 		</div>

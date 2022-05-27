@@ -32,8 +32,6 @@
 				</li>
 				<li class="nav-item"><a class="nav-link" href="perfil.jsp">Perfil</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="usuarios.jsp">Usuarios</a>
-				</li>
 				<li class="nav-item"><a class="nav-link active"
 					href="paisesin.jsp">Países</a></li>
 				<li class="nav-item"><a class="nav-link" href="centrosin.jsp">Centros</a>
@@ -53,15 +51,21 @@
 				</thead>
 				<tbody>
 					<%
-					HttpSession sesion = request.getSession();
-					if (sesion.getAttribute("usuario") == null) {
-						response.sendRedirect("index.html");
-					}
-					LinkedList<Paises> lista = Controller.getPaises();
-					for (int i = 0; i < lista.size(); i++) {
-						out.println("<td>" + lista.get(i).getPais() + "</td>");
-						out.println("<td>" + lista.get(i).getN_usuarios() + "</td>");
-						out.println("</tr>");
+					try {
+						HttpSession sesion = request.getSession();
+						if (sesion.getAttribute("usuario") == null) {
+							response.sendRedirect("index.html");
+						}
+						LinkedList<Paises> lista = Controller.getPaises();
+						for (int i = 0; i < lista.size(); i++) {
+							out.println("<td>" + lista.get(i).getPais() + "</td>");
+							out.println("<td>" + lista.get(i).getN_usuarios() + "</td>");
+							out.println("</tr>");
+						}
+					} catch (Exception ex) {
+						ex.printStackTrace();
+						out.println("<h1 class=\"text-warning\">Ha ocurrido un error :(</h1>\r\n"
+						+ "      <h2 class=\"text-danger\">No se ha podido conectar con la base de datos</h2>\r\n");
 					}
 					%>
 				</tbody>

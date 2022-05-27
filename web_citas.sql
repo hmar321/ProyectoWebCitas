@@ -10,58 +10,57 @@ CREATE TABLE paises (
 );
 
 CREATE TABLE usuarios (
-	usuario_id INT AUTO_INCREMENT NOT NULL,
 	nombre VARCHAR(50) NOT NULL,
 	direccion VARCHAR(50) NOT NULL,
 	ciudad VARCHAR(50) NOT NULL,
 	pais VARCHAR(50) NOT NULL,
 	sexo ENUM('Masculino','Femenino') NOT NULL,
 	pareja ENUM('Hombre','Mujer','Sin preferencia') NOT NULL DEFAULT 'Sin preferencia',
-	email VARCHAR(50) NOT NULL UNIQUE,
+	email VARCHAR(50) NOT NULL,
 	contrasena VARCHAR(50) NOT NULL,
-	PRIMARY KEY (usuario_id,pais),
+	PRIMARY KEY (email,pais),
 	FOREIGN KEY (pais) REFERENCES paises(pais)
 );
 
 CREATE TABLE categorias (
-	categoria_id INT AUTO_INCREMENT NOT NULL,
 	categoria VARCHAR(50) NOT NULL,
 	descripcion VARCHAR(500),
 	n_usuarios INT NOT NULL,
-	PRIMARY KEY (categoria_id)
+	PRIMARY KEY (categoria)
 );
 
 CREATE TABLE preferencias(
-	id_usuario INT AUTO_INCREMENT NOT NULL,
-	categoria_id INT NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	categoria VARCHAR(50) NOT NULL,
 	actividad TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
 	sincronizar_preferencias ENUM('Si','No') NOT NULL,
-	PRIMARY KEY (id_usuario,categoria_id),
-	FOREIGN KEY (categoria_id) REFERENCES categorias(categoria_id),
-	FOREIGN KEY (id_usuario) REFERENCES usuarios(usuario_id)
+	PRIMARY KEY (email,categoria),
+	FOREIGN KEY (categoria) REFERENCES categorias(categoria),
+	FOREIGN KEY (email) REFERENCES usuarios(email)
 );
 
 CREATE TABLE centros (
-	centro_id INT AUTO_INCREMENT NOT NULL,
 	cp INT(5) NOT NULL,
 	centro VARCHAR(50) NOT NULL,
 	direccion VARCHAR(100) NOT NULL,
 	ciudad VARCHAR(50) NOT NULL,
 	pais VARCHAR(50) NOT NULL,
 	web VARCHAR(50),
-	PRIMARY KEY (centro_id),
+	PRIMARY KEY (centro),
 	FOREIGN KEY (pais) REFERENCES paises(pais)
 );
 
 CREATE TABLE citas(
 	cita_id INT NOT NULL AUTO_INCREMENT,
 	fech_hora DATETIME NOT NULL,
-	centro_id INT NOT NULL,
+	centro VARCHAR(50) NOT NULL,
 	fracaso ENUM('Si','No','Pendiente') NOT NULL DEFAULT 'Pendiente',
 	email1 VARCHAR(50) NOT NULL,
 	email2 VARCHAR(50) NOT NULL,
-	PRIMARY KEY (cita_id,centro_id),
-	FOREIGN KEY (centro_id) REFERENCES centros(centro_id)
+	PRIMARY KEY (cita_id,centro,email1,email2),
+	FOREIGN KEY (centro) REFERENCES centros(centro),
+	FOREIGN KEY (email1) REFERENCES usuarios(email),
+	FOREIGN KEY (email2) REFERENCES usuarios(email)
 );
 
 INSERT INTO web_citas.paises (pais) VALUES
@@ -103,6 +102,6 @@ INSERT INTO web_citas.usuarios (nombre,direccion,ciudad,pais,sexo,email,contrase
 ('usuario asd','C/Tolosa,2,12345','Madrid','España','Masculino','usuario2@gmail.com','usuario')
 ;
 
-INSERT INTO web_citas.citas (fech_hora,centro_id,email1,email2) VALUES
-	('21-05-2022 17:00',1,'usuario@gmail.com','usuario2@gmail.com')
+INSERT INTO web_citas.citas (fech_hora,centro,email1,email2) VALUES
+	('2022-05-21 17:00','Restaurante DCorazon','usuario@gmail.com','usuario2@gmail.com')
 ;

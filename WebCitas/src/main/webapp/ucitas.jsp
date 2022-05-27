@@ -33,8 +33,6 @@
 				</li>
 				<li class="nav-item"><a class="nav-link active"
 					href="perfil.jsp">Perfil</a></li>
-				<li class="nav-item"><a class="nav-link" href="usuarios.jsp">Usuarios</a>
-				</li>
 				<li class="nav-item"><a class="nav-link" href="paisesin.jsp">Países</a></li>
 				<li class="nav-item"><a class="nav-link" href="centrosin.jsp">Centros</a></li>
 			</ul>
@@ -47,7 +45,7 @@
 				<thead>
 					<tr>
 						<th>Fecha y hora</th>
-						<th>Estadp</th>
+						<th>Centro</th>
 						<th>Usuario 1</th>
 						<th>Usuario 2</th>
 					</tr>
@@ -56,20 +54,24 @@
 					<%
 					try {
 						HttpSession sesion = request.getSession();
-						Usuarios usuario = (Usuarios) sesion.getAttribute("usuario");
-						LinkedList<Citas> lista = Controller.getCitas();
-						for (int i = 0; i < lista.size(); i++) {
-							if (usuario.getEmail() == lista.get(i).getEmail1() || usuario.getEmail() == lista.get(i).getEmail2()) {
-								out.println("<td>" + lista.get(i).getFecha_hora() + "</td>");
-								out.println("<td>" + lista.get(i).getFracaso() + "</td>");
-								out.println("<td>" + lista.get(i).getEmail1() + "</td>");
-								out.println("<td>" + lista.get(i).getEmail2() + "</td>");
-								out.println("</tr>");
-							}
+						if (sesion.getAttribute("usuario") == null) {
+							response.sendRedirect("index.html");
 						}
-					} catch (Exception e) {
-						e.printStackTrace();
-						response.sendRedirect("index.html");
+						Usuarios usuario = (Usuarios) sesion.getAttribute("usuario");
+						LinkedList<Citas> lista = Controller.getCitasUsuario(usuario);
+						for (int i = 0; i < lista.size(); i++) {
+
+							out.println("<td>" + (lista.get(i).getFecha_hora()).substring(0, 16) + "</td>");
+							out.println("<td>" + lista.get(i).getCentro() + "</td>");
+							out.println("<td>" + lista.get(i).getEmail1() + "</td>");
+							out.println("<td>" + lista.get(i).getEmail2() + "</td>");
+							out.println("</tr>");
+
+						}
+					} catch (Exception ex) {
+						ex.printStackTrace();
+						out.println("<h1 class=\"text-warning\">Ha ocurrido un error :(</h1>\r\n"
+						+ "      <h2 class=\"text-danger\">No se ha podido conectar con la base de datos</h2>\r\n");
 					}
 					%>
 				</tbody>

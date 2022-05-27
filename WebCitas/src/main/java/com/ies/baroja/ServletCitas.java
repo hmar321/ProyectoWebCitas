@@ -47,7 +47,7 @@ public class ServletCitas extends HttpServlet {
 		try {
 			/** 1- recogida de datos */
 			Citas cita = new Citas( request.getParameter("id_cita"),request.getParameter("fecha"+" "+"hora"), request.getParameter("centro_id"),
-					request.getParameter("fracaso"), request.getParameter("id_u1"), request.getParameter("id_u2"));
+					request.getParameter("fracaso"));
 			/** 2- Insertar cita en la base de datos */
 			boolean bRes = Controller.insertar(cita);
 			/** 3- Mostrar resultado por pantalla */
@@ -61,7 +61,7 @@ public class ServletCitas extends HttpServlet {
 						+ "</HEAD>\n" + "<BODY>\n" + "<div class=\"container mt-3\">\n"
 						+ "<h2 class=\"text-success\">Usuario insertado correctamente<h2>\n"
 						+ "<ul class=\"list-group\"> \n" + " <LI class=\"list-group-item\">nombre: "
-						+ cita.getCentro_id() + "</li>\n" + " <LI class=\"list-group-item\">procedencia: "
+						+ "</li>\n" + " <LI class=\"list-group-item\">procedencia: "
 						+ cita.getFecha_hora() + "</li>\n" + "<LI class=\"list-group-item\">altura: "
 						+ "</li>\n" + " <LI class=\"list-group-item\">peso: "
 						+ "</li>\n"

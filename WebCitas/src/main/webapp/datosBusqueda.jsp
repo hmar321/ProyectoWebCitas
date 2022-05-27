@@ -32,8 +32,6 @@
 				</li>
 				<li class="nav-item"><a class="nav-link active"
 					href="perfil.jsp">Perfil</a></li>
-				<li class="nav-item"><a class="nav-link" href="usuarios.jsp">Usuarios</a>
-				</li>
 				<li class="nav-item"><a class="nav-link" href="paisesin.jsp">Países</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="centrosin.jsp">Centros</a>
@@ -45,42 +43,46 @@
 	<div class="container mt-5">
 		<div class="row">
 
-			
-				<h2>Usuario encontrado</h2>
-				<div class="card">
-					<div class="card-body">
-						<img class="card-img-top" src="images/perfil.png" alt="Perfil"
-							style="width: 300px">
 
-						<%
-						try {
-							HttpSession sesion = request.getSession();
-							Usuarios usuario = (Usuarios) sesion.getAttribute("usuario");
-							out.println("<table class=\"table table-bordered\">");
-							out.println("<tbody>");
-							out.println("<tr><th>País</th>");
-							out.println("<td>" + usuario.getPais() + "</td></tr>");
-							out.println("<tr><th>Ciudad</th>");
-							out.println("<td>" + usuario.getCiudad() + "</td></tr>");
-							out.println("<tr><th>Sexo</th>");
-							out.println("<td>" + usuario.getSexo() + "</td></tr>");
-							out.println("<tr><th>Pareja</th>");
-							out.println("<td>" + usuario.getPareja() + "</td></tr>");
-							out.println("<tr><th>Email</th>");
-							out.println("<td>" + usuario.getEmail() + "</td></tr>");
-						} catch (Exception e) {
-							e.printStackTrace();
+			<h2>Usuario encontrado</h2>
+			<div class="card">
+				<div class="card-body">
+					<img class="card-img-top" src="images/perfil.png" alt="Perfil"
+						style="width: 300px">
+
+					<%
+					try {
+						HttpSession sesion = request.getSession();
+						if (sesion.getAttribute("usuario") == null) {
 							response.sendRedirect("index.html");
 						}
-						%>
-						</tbody>
-						</table>
-						<a class="btn btn-primary" href="perfil.jsp">Volver</a>
-					</div>
+						Usuarios usuario = (Usuarios) sesion.getAttribute("usuario");
+						out.println("<table class=\"table table-bordered\">");
+						out.println("<tbody>");
+						out.println("<tr><th>País</th>");
+						out.println("<td>" + usuario.getPais() + "</td></tr>");
+						out.println("<tr><th>Ciudad</th>");
+						out.println("<td>" + usuario.getCiudad() + "</td></tr>");
+						out.println("<tr><th>Sexo</th>");
+						out.println("<td>" + usuario.getSexo() + "</td></tr>");
+						out.println("<tr><th>Pareja</th>");
+						out.println("<td>" + usuario.getPareja() + "</td></tr>");
+						out.println("<tr><th>Email</th>");
+						out.println("<td>" + usuario.getEmail() + "</td></tr>");
+					} catch (Exception ex) {
+						ex.printStackTrace();
+						out.println("<h1 class=\"text-warning\">Ha ocurrido un error :(</h1>\r\n"
+						+ "      <h2 class=\"text-danger\">No se ha podido conectar con la base de datos</h2>\r\n");
+					}
+					%>
+					</tbody>
+					</table>
+					<a class="btn btn-primary" href="perfil.jsp">Volver</a>
 				</div>
-		
+			</div>
 
-			
+
+
 		</div>
 	</div>
 

@@ -38,8 +38,6 @@ if (sesion.getAttribute("usuario") == null) {
 					href="menuin.jsp">Menú</a></li>
 				<li class="nav-item"><a class="nav-link" href="perfil.jsp">Perfil</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="usuarios.jsp">Usuarios</a>
-				</li>
 				<li class="nav-item"><a class="nav-link" href="paisesin.jsp">Países</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="centrosin.jsp">Centros</a>

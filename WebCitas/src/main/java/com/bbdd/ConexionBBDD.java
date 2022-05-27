@@ -77,13 +77,13 @@ public class ConexionBBDD {
 	
 	public int insertar(Citas cita) throws SQLException {
 		int iRes = 0;
-		String sInsert = "INSERT INTO web_citas.citas (fech_hora,centro_id,id_u1,id_u2) VALUES (?, ?, ?, ?)";
+		String sInsert = "INSERT INTO web_citas.citas (fech_hora,centro,email1,email2) VALUES (?, ?, ?, ?);";
 		try {
 			System.out.println("Ejecutando: " + sInsert);
 			System.out.println("datos: " + cita);
 			PreparedStatement prepStatement = conexion.prepareStatement(sInsert);
 			prepStatement.setString(1, cita.getFecha_hora());
-			prepStatement.setString(2, cita.getCentro_id());
+			prepStatement.setString(2, cita.getCentro());
 			prepStatement.setString(3, cita.getEmail1());
 			prepStatement.setString(4, cita.getEmail2());
 			iRes = prepStatement.executeUpdate();

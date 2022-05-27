@@ -7,6 +7,12 @@
 <html lang="es">
 
 <head>
+<%
+HttpSession sesion = request.getSession();
+if (sesion.getAttribute("usuario") == null) {
+	response.sendRedirect("index.html");
+}
+%>
 <title>Buscar Usuario</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,14 +22,6 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="css/interfaz.css">
-<%
-try {
-	HttpSession sesion = request.getSession();
-} catch (Exception e) {
-	e.printStackTrace();
-	response.sendRedirect("index.html");
-}
-%>
 </head>
 
 <body>
@@ -38,8 +36,6 @@ try {
 				</li>
 				<li class="nav-item"><a class="nav-link active"
 					href="perfil.jsp">Perfil</a></li>
-				<li class="nav-item"><a class="nav-link" href="usuarios.jsp">Usuarios</a>
-				</li>
 				<li class="nav-item"><a class="nav-link" href="paisesin.jsp">Países</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="centrosin.jsp">Centros</a>

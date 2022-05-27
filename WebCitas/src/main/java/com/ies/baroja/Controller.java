@@ -10,6 +10,7 @@ import com.model.Paises;
 import com.model.Usuarios;
 import com.mysql.jdbc.PreparedStatement;
 import com.bbdd.ConexionBBDD;
+
 /**
  * Clase que conecta el servlet con la base de datos
  * 
@@ -20,7 +21,8 @@ public class Controller {
 	private static String sConsultaUsuarios = "SELECT Nombre, Direccion,Ciudad,Pais,Sexo,Pareja,Email,Contrasena FROM usuarios;";
 	private static String sConsultaPaises = "SELECT pais,n_usuarios FROM paises;";
 	private static String sConsultaCentros = "SELECT cp,centro,direccion,ciudad,pais,web FROM centros;";
-	private static String sConsultaCitas = "SELECT cita_id, fech_hora,centro_id,fracaso,id_u1,id_u2 FROM usuarios;";
+	private static String sConsultaCitas = "SELECT fech_hora,centro,email1,email2 FROM citas;";
+
 	/**
 	 * Devolver lista de usuarios
 	 * 
@@ -81,12 +83,12 @@ public class Controller {
 		Usuarios usuario = null;
 		/** 1-conecar a la BBDD */
 		ConexionBBDD miConexion = new ConexionBBDD();
-		String sConsultaBuscaJugador = "SELECT nombre, direccion, ciudad, pais,sexo,pareja,email,contrasena FROM usuarios WHERE email = '"
+		String sConsultaBuscaUsuario = "SELECT nombre, direccion, ciudad, pais,sexo,pareja,email,contrasena FROM usuarios WHERE email = '"
 				+ email + "';";
 		try {
 			miConexion.conectar();
 			/** 2-lanzar consulta */
-			ResultSet rsResultado = miConexion.ejecutarConsulta(sConsultaBuscaJugador);
+			ResultSet rsResultado = miConexion.ejecutarConsulta(sConsultaBuscaUsuario);
 			if (rsResultado != null) {
 				// Si hay resultado recuperamos los datos (como un FETCH de un CURSOR)
 				/** 3-recuperar los datos */
@@ -178,31 +180,32 @@ public class Controller {
 	}
 
 //----------------------------------------------------------------------Citas-----------------------------------------------------------------
-	public static LinkedList<Citas> getCitas() {
+	public static LinkedList<Citas> getCitasUsuario(Usuarios usuario) {
 		// Objeto con la lista de usuarios
 		LinkedList<Citas> listaUsuarios = new LinkedList<Citas>();
 		// Primero conectamos a la BBDD
 		ConexionBBDD miConexion = new ConexionBBDD();
+		String sConsultaBuscaUsuario = "SELECT fech_hora, centro, email1, email2 FROM citas WHERE email1 = '"
+				+ usuario.getEmail() + "' OR email2 = '"+usuario.getEmail() +"';";
 		try {
 			miConexion.conectar();
 			// Lanzamos la consulta
-			ResultSet rsResultado = miConexion.ejecutarConsulta(sConsultaCitas);
+			ResultSet rsResultado = miConexion.ejecutarConsulta(sConsultaBuscaUsuario);
 			if (rsResultado != null) {
 				// Si hay resultado recuperamos los datos (como un FETCH de un CURSOR)
 				while (rsResultado.next()) {
 					// Creamos un objeto jugador por cada fila de la tabla (cada jugador)
-					Citas jugador = new Citas(rsResultado.getString("cita_id"), rsResultado.getString("fech_hora"),
-							rsResultado.getString("centro_id"), rsResultado.getString("fracaso"),
-							rsResultado.getString("id_u1"), rsResultado.getString("id_u2"));
+					Citas cita = new Citas(rsResultado.getString("fech_hora"), rsResultado.getString("centro"),
+							rsResultado.getString("email1"), rsResultado.getString("email2"));
 					// Lo insertamos en la lista
-					listaUsuarios.add(jugador);
+					listaUsuarios.add(cita);
 
 				}
 
 			} else {
 				System.out.println("La consulta no devuelve resultados");
 			}
-			System.out.println("Número de usuarios=" + listaUsuarios.size());
+			System.out.println("Número de citas del usuario=" + listaUsuarios.size());
 		} catch (SQLException sqlex) {
 			System.out.println("Error: " + sqlex.getMessage());
 			sqlex.printStackTrace();
